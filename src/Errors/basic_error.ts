@@ -7,6 +7,6 @@ export abstract class BasicError extends Error {
   }
 
   color(message: string) {
-    return chalk.yellow(message);
+    return chalk.red(message);
   }
 }

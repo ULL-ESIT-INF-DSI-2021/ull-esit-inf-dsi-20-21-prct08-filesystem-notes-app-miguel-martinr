@@ -167,7 +167,7 @@ Ejemplo, handler del comando `add`:
       
       if (!Note.checkColor(argv.color)) throw new InvalidColor(argv.color);
       manager.addNote(argv.username, new Note(argv.title, argv.body, argv.color as KnownColors));
-      console.log(success(`Nota ${argv.username}/${argv.title} añadida correctamente!`));
+      console.log(success(`Note ${argv.username}/${argv.title} correctly added!`));
     }
   },
 ```
@@ -176,8 +176,20 @@ Como podemos observar en este ejemplo, verificamos que los argumentos recibidos 
 
 Una vez finalizadas las comprobaciones, añadimos la nota e imprimimos por consola un mensaje informativo utilizando nuestra función `success`.
 
-## **Ejemplo de uso**
+## **Ejemplos de uso**
 
+### **Añadir nota a un nuevo usuario**
+![Demo Añadir](media://add-demo.gif)
+
+### **Listar notas de los usuarios**
+![Listar demo](media://list-demo.gif)
+
+### **Eliminar una nota**
+![Eliminar demo](media://remove-demo.gif)
+### **Leer una nota**
+![Leer demo](media://read-demo.gif)
+### **Editar una nota**
+![Editar demo](media://edit-demo.gif)
 
 ## **Workflows**
 En esta práctica se ha empleado la integración continua de Github, en concreto hemos definido tres flujos de trabajo: uno para el cubrimiento con Coveralls, uno para los tests con Node.js y otro para evaluar la calidad del código con SonarCloud.

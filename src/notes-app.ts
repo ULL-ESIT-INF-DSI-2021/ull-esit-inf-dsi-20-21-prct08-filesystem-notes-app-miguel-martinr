@@ -44,7 +44,7 @@ yargs.command({
       
       if (!Note.checkColor(argv.color)) throw new InvalidColor(argv.color);
       manager.addNote(argv.username, new Note(argv.title, argv.body, argv.color as KnownColors));
-      console.log(success(`Nota ${argv.username}/${argv.title} añadida correctamente!`));
+      console.log(success(`Note ${argv.username}/${argv.title} correctly added!`));
     }
   },
 });
@@ -68,7 +68,7 @@ yargs.command({
   handler(argv) {
     if (typeof argv.username === 'string' && typeof argv.title === 'string') {
       manager.removeNote(argv.username, argv.title);
-      console.log(success(`Nota ${argv.username}/${argv.title} eliminada correctamente!`));
+      console.log(success(`Note ${argv.username}/${argv.title} removed correctly!`));
     }
   },
 });
@@ -113,7 +113,7 @@ yargs.command({
       };
 
       manager.editNote(argv.username, argv.title, newValues);
-      console.log(success(`Nota ${argv.username}/${argv.title} editada correctamente!`));
+      console.log(success(`Note ${argv.username}/${argv.title} edited correctly!`));
     }
   },
 });
