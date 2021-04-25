@@ -1,8 +1,12 @@
 import 'mocha';
 import { expect } from 'chai';
+import { Note } from '../src/note';
+import { KnownColors } from '../src/Interfaces/colored';
 
-describe('Foo tests', () => {
-  it('true', () => {  
-    expect(true).to.be.true;
+describe('Note tests', () => {
+  it('It can be instanciated', () => {
+    expect(new Note('', '', KnownColors.green) instanceof Note).to.be.true;
   });
+
+
 });

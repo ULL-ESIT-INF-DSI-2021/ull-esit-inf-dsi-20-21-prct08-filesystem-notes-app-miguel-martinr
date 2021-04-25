@@ -1,4 +1,0 @@
-function FooFn() {
-  return 'foo';
-}
-
