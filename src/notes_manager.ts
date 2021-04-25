@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import { InvalidUsernameError, RepeatedNoteError, InvalidNote, NoEdition, InvalidColor } from './Errors';
 import { KnownColors } from './Interfaces/colored';
-import { editObj } from './Interfaces/editObj';
+import { EditObj } from './Interfaces/edit-obj';
 import { Note } from "./note";
 
 
@@ -119,7 +119,7 @@ export class NotesManager {
     return new Note(parsed.title, parsed.body, parsed.color);
   }
 
-  editNote(username: string, noteTitle: string, newValues: editObj) {
+  editNote(username: string, noteTitle: string, newValues: EditObj) {
 
     // Verifica que existe el usuario
     const userDir = this.dbPath + username;

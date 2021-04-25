@@ -1,4 +1,4 @@
-export interface editObj {
+export interface EditObj {
   newTitle?: unknown,
   newBody?: unknown,
   newColor?: unknown,
