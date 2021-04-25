@@ -1,9 +1,5 @@
 import * as fs from 'fs';
-import { InvalidColor } from './Errors/invalid_color';
-import { InvalidNote } from './Errors/invalid_note';
-import { InvalidUsernameError } from './Errors/invalid_username';
-import { NoEdition } from './Errors/no_edition';
-import { RepeatedNoteError } from './Errors/repeated_note';
+import { InvalidUsernameError, RepeatedNoteError, InvalidNote, NoEdition, InvalidColor } from './Errors';
 import { KnownColors } from './Interfaces/colored';
 import { editObj } from './Interfaces/editObj';
 import { Note } from "./note";
@@ -18,8 +14,17 @@ export class NotesManager {
    * 
    * @param {string} dbPath Ruta al directorio donde se guardarán los directorios de los usuarios que contendrán las notas.
    */
-  constructor(private dbPath = './Notes/') {
+  private dbPath: string;
+  constructor(dbPath = './Notes/') {
+    this.dbPath = this.normalizePath(dbPath);
+  }
 
+  /**
+   * Normalizes path adding '/' at the end of it if is not already there
+   * @param {string} denormalizedPath Path to normalize
+   */
+  normalizePath(denormalizedPath: string): string {
+    return denormalizedPath[denormalizedPath.length-1] !== '/' ? denormalizedPath + '/' : denormalizedPath;
   }
 
   /**
@@ -138,11 +143,11 @@ export class NotesManager {
       newNote.setBody(newValues.newBody);
     }
 
-    if (typeof newValues.newColor === 'string' && Note.checkColor(newValues.newColor)) {
-      newNote.setColor(newValues.newColor as KnownColors);
-    } else {
-      throw new InvalidColor(newValues.newColor as string);
+    if (typeof newValues.newColor === 'string') {
+      if (!Note.checkColor(newValues.newColor)) throw new InvalidColor(newValues.newColor as string);
+      newNote.setColor(newValues.newColor as KnownColors);     
     }
+   
 
     // Sustituye la nota
     this.removeNote(username, noteTitle);

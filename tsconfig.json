@@ -1,8 +1,9 @@
 {
   "exclude": [
-    "./tests",
+    "notes_manager.spec.ts",
     "./node_modules",
-    "./dist"
+    "./dist",
+    "./tests",
     ],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
