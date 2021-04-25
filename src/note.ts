@@ -1,6 +1,6 @@
 import { Colored, KnownColors } from "./Interfaces/colored";
 import * as chalk from 'chalk';
-import { InvalidColor } from "./Errors/invalid_color";
+
 /**
  * Clase que representa una nota
  */
@@ -12,9 +12,8 @@ export class Note implements Colored {
    * @param {KnownColors} color  Color de la nota
    */
   private color: KnownColors;
-  constructor(private title: string, private body: string, color: string) {
-    
-    if (!this.checkColor(color)) throw new InvalidColor(color);
+  constructor(private title: string, private body: string, color: KnownColors) {
+
     this.color = color as KnownColors;
   }
 
@@ -23,7 +22,7 @@ export class Note implements Colored {
    * @param {string} color Color a analizar
    * @return  {boolean} Verdadero si es conocido, Falso en otro caso
    */
-  checkColor(color: string): boolean {
+  static checkColor(color: string): boolean {
     const knownColors = Object.values(KnownColors) as string[];
     return knownColors.includes(color);
   }
@@ -32,8 +31,7 @@ export class Note implements Colored {
    * Actualiza el color de la nota
    * @param {KnownColors} newColor Nuevo color de la nota
    */
-  setColor(newColor: string) {
-    if (!this.checkColor(newColor)) throw new InvalidColor(newColor);
+  setColor(newColor: KnownColors) {
     this.color = newColor as KnownColors;
   }
 

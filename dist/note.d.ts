@@ -12,18 +12,18 @@ export declare class Note implements Colored {
      * @param {KnownColors} color  Color de la nota
      */
     private color;
-    constructor(title: string, body: string, color: string);
+    constructor(title: string, body: string, color: KnownColors);
     /**
      * Verifica si se trata de un color conocido.
      * @param {string} color Color a analizar
      * @return  {boolean} Verdadero si es conocido, Falso en otro caso
      */
-    checkColor(color: string): boolean;
+    static checkColor(color: string): boolean;
     /**
      * Actualiza el color de la nota
      * @param {KnownColors} newColor Nuevo color de la nota
      */
-    setColor(newColor: string): void;
+    setColor(newColor: KnownColors): void;
     /**
      * Actualiza el título de la nota
      * @param {string} newTitle  Nuevo título de la nota

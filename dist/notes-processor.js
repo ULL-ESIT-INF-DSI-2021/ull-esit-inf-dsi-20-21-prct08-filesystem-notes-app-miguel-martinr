@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const chalk = require("chalk");
 const yargs = require("yargs");
+const invalid_color_1 = require("./Errors/invalid_color");
 const note_1 = require("./note");
 const notes_manager_1 = require("./notes_manager");
 const success = chalk.green;
@@ -38,6 +39,8 @@ yargs.command({
     handler(argv) {
         if (typeof argv.username === 'string' && typeof argv.title === 'string' &&
             typeof argv.color === 'string' && typeof argv.body === 'string') {
+            if (!note_1.Note.checkColor(argv.color))
+                throw new invalid_color_1.InvalidColor(argv.color);
             manager.addNote(argv.username, new note_1.Note(argv.title, argv.body, argv.color));
             console.log(success(`Nota ${argv.username}/${argv.title} añadida correctamente!`));
         }

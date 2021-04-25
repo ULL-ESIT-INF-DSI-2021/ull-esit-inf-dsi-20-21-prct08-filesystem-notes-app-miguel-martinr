@@ -1,5 +1,7 @@
 import chalk = require('chalk');
 import yargs = require('yargs');
+import { InvalidColor } from './Errors/invalid_color';
+import { KnownColors } from './Interfaces/colored';
 import { Note } from './note';
 import { NotesManager } from './notes_manager';
 
@@ -39,8 +41,9 @@ yargs.command({
   handler(argv) {
     if (typeof argv.username === 'string' && typeof argv.title === 'string' &&
       typeof argv.color === 'string' && typeof argv.body === 'string') {
-
-      manager.addNote(argv.username, new Note(argv.title, argv.body, argv.color));
+      
+      if (!Note.checkColor(argv.color)) throw new InvalidColor(argv.color);
+      manager.addNote(argv.username, new Note(argv.title, argv.body, argv.color as KnownColors));
       console.log(success(`Nota ${argv.username}/${argv.title} añadida correctamente!`));
     }
   },

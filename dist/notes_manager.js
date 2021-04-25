@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NotesManager = void 0;
 const fs = require("fs");
+const invalid_color_1 = require("./Errors/invalid_color");
 const invalid_note_1 = require("./Errors/invalid_note");
 const invalid_username_1 = require("./Errors/invalid_username");
 const no_edition_1 = require("./Errors/no_edition");
@@ -121,8 +122,11 @@ class NotesManager {
         if (typeof newValues.newBody === 'string') {
             newNote.setBody(newValues.newBody);
         }
-        if (typeof newValues.newColor === 'string') {
+        if (typeof newValues.newColor === 'string' && note_1.Note.checkColor(newValues.newColor)) {
             newNote.setColor(newValues.newColor);
+        }
+        else {
+            throw new invalid_color_1.InvalidColor(newValues.newColor);
         }
         // Sustituye la nota
         this.removeNote(username, noteTitle);

@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import { InvalidColor } from './Errors/invalid_color';
 import { InvalidNote } from './Errors/invalid_note';
 import { InvalidUsernameError } from './Errors/invalid_username';
 import { NoEdition } from './Errors/no_edition';
@@ -137,8 +138,10 @@ export class NotesManager {
       newNote.setBody(newValues.newBody);
     }
 
-    if (typeof newValues.newColor === 'string') {
-      newNote.setColor(newValues.newColor);
+    if (typeof newValues.newColor === 'string' && Note.checkColor(newValues.newColor)) {
+      newNote.setColor(newValues.newColor as KnownColors);
+    } else {
+      throw new InvalidColor(newValues.newColor as string);
     }
 
     // Sustituye la nota

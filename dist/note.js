@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Note = void 0;
 const colored_1 = require("./Interfaces/colored");
 const chalk = require("chalk");
-const invalid_color_1 = require("./Errors/invalid_color");
 /**
  * Clase que representa una nota
  */
@@ -11,8 +10,6 @@ class Note {
     constructor(title, body, color) {
         this.title = title;
         this.body = body;
-        if (!this.checkColor(color))
-            throw new invalid_color_1.InvalidColor(color);
         this.color = color;
     }
     /**
@@ -20,7 +17,7 @@ class Note {
      * @param {string} color Color a analizar
      * @return  {boolean} Verdadero si es conocido, Falso en otro caso
      */
-    checkColor(color) {
+    static checkColor(color) {
         const knownColors = Object.values(colored_1.KnownColors);
         return knownColors.includes(color);
     }
@@ -29,8 +26,6 @@ class Note {
      * @param {KnownColors} newColor Nuevo color de la nota
      */
     setColor(newColor) {
-        if (!this.checkColor(newColor))
-            throw new invalid_color_1.InvalidColor(newColor);
         this.color = newColor;
     }
     /**
