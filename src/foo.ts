@@ -1,0 +1,4 @@
+function FooFn() {
+  return 'foo';
+}
+
