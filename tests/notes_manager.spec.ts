@@ -74,7 +74,7 @@ describe('NotesManager wrong values tests', () => {
   
   const manager = new NotesManager('./tests/Notes');
   const firstNote = new Note('FrankNote', 'This is Frank\'s note', KnownColors.green);
-  const secondNote = new Note('SecondNote', 'This is Frank\'s second note', KnownColors.blue);
+
 
   it('Normalizes path', () => {
     expect(manager.normalizePath('apath/')).to.be.eq('apath/');
