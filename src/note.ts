@@ -32,7 +32,7 @@ export class Note implements Colored {
    * @param {KnownColors} newColor Nuevo color de la nota
    */
   setColor(newColor: KnownColors) {
-    this.color = newColor as KnownColors;
+    this.color = newColor;
   }
 
   /**
