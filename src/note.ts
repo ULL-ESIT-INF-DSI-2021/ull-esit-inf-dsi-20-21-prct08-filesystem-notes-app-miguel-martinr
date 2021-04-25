@@ -91,5 +91,6 @@ export class Note implements Colored {
     return chalk[this.color](`${this.title}\n\n` + 
                              `  ${this.body}\n\n`);
   }
-};
+}
+
 
