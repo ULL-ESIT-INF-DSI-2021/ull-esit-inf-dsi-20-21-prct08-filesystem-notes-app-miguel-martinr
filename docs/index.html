@@ -199,10 +199,10 @@
 <span style="color: #24292E">    newNote.</span><span style="color: #6F42C1">setColor</span><span style="color: #24292E">(newValues.newColor </span><span style="color: #D73A49">as</span><span style="color: #24292E"> </span><span style="color: #6F42C1">KnownColors</span><span style="color: #24292E">);     </span>
 <span style="color: #24292E">  }</span>
 </code></pre>
-				<a href="#aplicación-principal" id="aplicación-principal" style="color: inherit; text-decoration: none;">
-					<h2><strong>Aplicación principal</strong></h2>
+				<a href="#aplicación" id="aplicación" style="color: inherit; text-decoration: none;">
+					<h2><strong>Aplicación</strong></h2>
 				</a>
-				<p>La aplicación principal define los comandos que se podrán recibir mediante el uso de <code>yargs</code>. Los comandos soportados son: <code>add</code>, <code>remove</code>, <code>list</code>, <code>read</code>, y <code>edit</code>.</p>
+				<p>El programa principal (se invoca de la forma <code>dist/notes-app.js</code>) define los comandos que se podrán recibir mediante el uso de <code>yargs</code>. Los comandos soportados son: <code>add</code>, <code>remove</code>, <code>list</code>, <code>read</code>, y <code>edit</code>.</p>
 				<p>Una vez definidos los comandos y sus parámetros, utilizamos un bloque try catch para invocar al método <code>parse</code> de <code>yargs</code>, y manejamos un posible error imprimiéndolo por la consola haciendo uso de su método <code>toString</code>:</p>
 				<pre><code class="language-typescript"><span style="color: #24292E">. . . </span>
 <span style="color: #D73A49">try</span><span style="color: #24292E"> {</span>
@@ -222,15 +222,35 @@
 <span style="color: #24292E">      </span>
 <span style="color: #24292E">      </span><span style="color: #D73A49">if</span><span style="color: #24292E"> (</span><span style="color: #D73A49">!</span><span style="color: #24292E">Note.</span><span style="color: #6F42C1">checkColor</span><span style="color: #24292E">(argv.color)) </span><span style="color: #D73A49">throw</span><span style="color: #24292E"> </span><span style="color: #D73A49">new</span><span style="color: #24292E"> </span><span style="color: #6F42C1">InvalidColor</span><span style="color: #24292E">(argv.color);</span>
 <span style="color: #24292E">      manager.</span><span style="color: #6F42C1">addNote</span><span style="color: #24292E">(argv.username, </span><span style="color: #D73A49">new</span><span style="color: #24292E"> </span><span style="color: #6F42C1">Note</span><span style="color: #24292E">(argv.title, argv.body, argv.color </span><span style="color: #D73A49">as</span><span style="color: #24292E"> </span><span style="color: #6F42C1">KnownColors</span><span style="color: #24292E">));</span>
-<span style="color: #24292E">      console.</span><span style="color: #6F42C1">log</span><span style="color: #24292E">(</span><span style="color: #6F42C1">success</span><span style="color: #24292E">(</span><span style="color: #032F62">`Nota ${</span><span style="color: #24292E">argv</span><span style="color: #032F62">.</span><span style="color: #24292E">username</span><span style="color: #032F62">}/${</span><span style="color: #24292E">argv</span><span style="color: #032F62">.</span><span style="color: #24292E">title</span><span style="color: #032F62">} añadida correctamente!`</span><span style="color: #24292E">));</span>
+<span style="color: #24292E">      console.</span><span style="color: #6F42C1">log</span><span style="color: #24292E">(</span><span style="color: #6F42C1">success</span><span style="color: #24292E">(</span><span style="color: #032F62">`Note ${</span><span style="color: #24292E">argv</span><span style="color: #032F62">.</span><span style="color: #24292E">username</span><span style="color: #032F62">}/${</span><span style="color: #24292E">argv</span><span style="color: #032F62">.</span><span style="color: #24292E">title</span><span style="color: #032F62">} correctly added!`</span><span style="color: #24292E">));</span>
 <span style="color: #24292E">    }</span>
 <span style="color: #24292E">  },</span>
 </code></pre>
 				<p>Como podemos observar en este ejemplo, verificamos que los argumentos recibidos son de tipo <code>string</code>, y posteriormente comprobamos también que el color está soportado mediante el método estático <code>Note.checkColor</code>.</p>
 				<p>Una vez finalizadas las comprobaciones, añadimos la nota e imprimimos por consola un mensaje informativo utilizando nuestra función <code>success</code>.</p>
-				<a href="#ejemplo-de-uso" id="ejemplo-de-uso" style="color: inherit; text-decoration: none;">
-					<h2><strong>Ejemplo de uso</strong></h2>
+				<a href="#ejemplos-de-uso" id="ejemplos-de-uso" style="color: inherit; text-decoration: none;">
+					<h2><strong>Ejemplos de uso</strong></h2>
 				</a>
+				<a href="#añadir-nota-a-un-nuevo-usuario" id="añadir-nota-a-un-nuevo-usuario" style="color: inherit; text-decoration: none;">
+					<h3><strong>Añadir nota a un nuevo usuario</strong></h3>
+				</a>
+				<p><img src="media/add-demo.gif" alt="Demo Añadir"></p>
+				<a href="#listar-notas-de-los-usuarios" id="listar-notas-de-los-usuarios" style="color: inherit; text-decoration: none;">
+					<h3><strong>Listar notas de los usuarios</strong></h3>
+				</a>
+				<p><img src="media/list-demo.gif" alt="Listar demo"></p>
+				<a href="#eliminar-una-nota" id="eliminar-una-nota" style="color: inherit; text-decoration: none;">
+					<h3><strong>Eliminar una nota</strong></h3>
+				</a>
+				<p><img src="media/remove-demo.gif" alt="Eliminar demo"></p>
+				<a href="#leer-una-nota" id="leer-una-nota" style="color: inherit; text-decoration: none;">
+					<h3><strong>Leer una nota</strong></h3>
+				</a>
+				<p><img src="media/read-demo.gif" alt="Leer demo"></p>
+				<a href="#editar-una-nota" id="editar-una-nota" style="color: inherit; text-decoration: none;">
+					<h3><strong>Editar una nota</strong></h3>
+				</a>
+				<p><img src="media/edit-demo.gif" alt="Editar demo"></p>
 				<a href="#workflows" id="workflows" style="color: inherit; text-decoration: none;">
 					<h2><strong>Workflows</strong></h2>
 				</a>
