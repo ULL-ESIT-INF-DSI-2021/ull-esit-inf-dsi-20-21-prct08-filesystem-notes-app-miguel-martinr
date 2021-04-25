@@ -1,0 +1,314 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Aplicación de procesamiento de notas de texto</title>
+	<meta name="description" content="Documentation for Aplicación de procesamiento de notas de texto">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">Aplicación de procesamiento de notas de texto</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>Aplicación de procesamiento de notas de texto</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<p><a href="https://coveralls.io/github/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-miguel-martinr?branch=master"><img src="https://coveralls.io/repos/github/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-miguel-martinr/badge.svg?branch=master" alt="Coverage Status"></a>
+					<a href="https://sonarcloud.io/dashboard?id=ULL-ESIT-INF-DSI-2021_ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-miguel-martinr"><img src="https://sonarcloud.io/api/project_badges/measure?project=ULL-ESIT-INF-DSI-2021_ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-miguel-martinr&metric=alert_status" alt="Quality Gate Status"></a>
+				<a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-miguel-martinr/actions/workflows/node.js.yml"><img src="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-miguel-martinr/actions/workflows/node.js.yml/badge.svg" alt="Tests"></a></p>
+				<a href="#ver-en-github" id="ver-en-github" style="color: inherit; text-decoration: none;">
+					<h1><a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-miguel-martinr.git"><strong>Ver en Github</strong></a></h1>
+				</a>
+				<a href="#introducción" id="introducción" style="color: inherit; text-decoration: none;">
+					<h2><strong>Introducción</strong></h2>
+				</a>
+				<p>A continuación abordaremos el desarrollo de una aplicación gestora de notas de texto aplicando TDD y respetando los principios SOLID. Dicha aplicación permitirá guardar notas para distintos usuarios en formato JSON. Cada nota estará formada por un título, un cuerpo y un color. </p>
+				<p>La aplicación funcionará exclusivamente mediante la línea de comandos, para lo que utilizaremos el paquete <code>yargs</code>. Además, emplearemos el paquete <code>chalk</code> para colorear la salida del programa con distintos colores:</p>
+				<ul>
+					<li>Errores: rojo</li>
+					<li>Informativo: verde</li>
+					<li>Información de nota: color de la nota</li>
+				</ul>
+				<p>El propósito de esta práctica es familiarizarnos con el uso de la api síncrona proporcionada por Node.js para trabajar con el sistema de ficheros.</p>
+				<a href="#representación-de-los-datos" id="representación-de-los-datos" style="color: inherit; text-decoration: none;">
+					<h2><strong>Representación de los datos</strong></h2>
+				</a>
+				<a href="#errores" id="errores" style="color: inherit; text-decoration: none;">
+					<h3><strong>Errores</strong></h3>
+				</a>
+				<p>Queremos desarrollar una aplicación robusta, por lo que debemos asegurarnos de manejar cualquier posible error de la manera más amigable e informativa para el usuario.</p>
+				<p>Por ello, desarrollaremos una clase abstracta llamada <code>BasicError</code> que extienda a <code>Error</code>. Esta clase recibirá opcionalmente un mensaje y se lo pasará al constructor de su clase padre. Además, definirá el método <code>color</code>, que recibe una <code>string</code> y devuelve la misma coloreada empleando <code>chalk</code>.</p>
+				<p>De esta forma, crearemos una serie de clases que extiendan a <code>BasicError</code> y que sobreescriban el método <code>toString</code> de su clase padre: </p>
+				<pre><code class="language-typescript"><span style="color: #D73A49">export</span><span style="color: #24292E"> </span><span style="color: #D73A49">class</span><span style="color: #24292E"> </span><span style="color: #6F42C1">RepeatedNoteError</span><span style="color: #24292E"> </span><span style="color: #D73A49">extends</span><span style="color: #24292E"> </span><span style="color: #6F42C1">BasicError</span><span style="color: #24292E"> {</span>
+<span style="color: #24292E">  </span><span style="color: #D73A49">constructor</span><span style="color: #24292E">(</span><span style="color: #D73A49">private</span><span style="color: #24292E"> </span><span style="color: #E36209">notePath</span><span style="color: #D73A49">:</span><span style="color: #24292E"> </span><span style="color: #005CC5">string</span><span style="color: #24292E">) {</span>
+<span style="color: #24292E">    </span><span style="color: #005CC5">super</span><span style="color: #24292E">(</span><span style="color: #032F62">`There</span><span style="color: #005CC5">\&#039;</span><span style="color: #032F62">s already a note called ${</span><span style="color: #24292E">notePath</span><span style="color: #032F62">} !`</span><span style="color: #24292E">);</span>
+<span style="color: #24292E">  }</span>
+
+<span style="color: #24292E">  </span><span style="color: #6F42C1">toString</span><span style="color: #24292E">() {</span>
+<span style="color: #24292E">    </span><span style="color: #D73A49">return</span><span style="color: #24292E"> </span><span style="color: #005CC5">super</span><span style="color: #24292E">.</span><span style="color: #6F42C1">color</span><span style="color: #24292E">(</span><span style="color: #005CC5">super</span><span style="color: #24292E">.</span><span style="color: #6F42C1">toString</span><span style="color: #24292E">());</span>
+<span style="color: #24292E">  }</span>
+<span style="color: #24292E">}</span>
+</code></pre>
+				<p>Así, todos los hijos de <code>BasicError</code> poseerán un método <code>toString</code> que devolverá un mensaje específico de cada error formado por la clase <code>Error</code> y coloreado con el color que especifique <code>BasicError</code>. Si quisiéramos cambiar el color de los errores simplemente tendríamos que cambiar el método <code>color</code>.</p>
+				<a href="#note" id="note" style="color: inherit; text-decoration: none;">
+					<h3><strong>Note</strong></h3>
+				</a>
+				<p> Es la clase que gestionará los datos de una nota. Dicha clase, que llamaremos <code>Note</code>, tendrá los atributos privados que componen una nota (título: string, cuerpo: string y color: KnownColors).</p>
+				<p>Para gestionar los colores soportados crearemos un <code>enum</code> llamado <code>KnownColors</code> que contendrá los colores soportados por la aplicación(red, gree, blue, yellow).</p>
+				<p><em>Nota: Desarrollaremos una intefaz <code>Colored</code> que defina los métodos <code>setColor</code> y <code>getColor</code>, esta interfaz deberá ser implementada por cualquier objeto que posea un color.</em></p>
+				<p>Además de los setters y getters correspondientes para cada atributo, añadiremos también un método estático <code>checkColor</code> que se encargue de recibir una <code>string</code> y devuelva un booleano que indique si se trata de un color soportado o no. Este método nos será útil para controlar los valores que recibamos desde la línea de comandos, que serán de tipo <code>string</code>. </p>
+				<pre><code class="language-typescript"><span style="color: #24292E">  static </span><span style="color: #6F42C1">checkColor</span><span style="color: #24292E">(color: string): boolean {</span>
+<span style="color: #24292E">    </span><span style="color: #D73A49">const</span><span style="color: #24292E"> </span><span style="color: #005CC5">knownColors</span><span style="color: #24292E"> </span><span style="color: #D73A49">=</span><span style="color: #24292E"> </span><span style="color: #005CC5">Object</span><span style="color: #24292E">.</span><span style="color: #6F42C1">values</span><span style="color: #24292E">(KnownColors) </span><span style="color: #D73A49">as</span><span style="color: #24292E"> </span><span style="color: #005CC5">string</span><span style="color: #24292E">[];</span>
+<span style="color: #24292E">    </span><span style="color: #D73A49">return</span><span style="color: #24292E"> knownColors.</span><span style="color: #6F42C1">includes</span><span style="color: #24292E">(color);</span>
+<span style="color: #24292E">  }</span>
+</code></pre>
+				<p>Asimismo, definiremos un método <code>prinTitle</code> que se encargue de retornar el título de la nota coloreado y un método <code>print</code> que se encargue de retornar una string con toda la información de la nota coloreada y formateada.</p>
+				<a href="#notesmanager" id="notesmanager" style="color: inherit; text-decoration: none;">
+					<h3><strong>NotesManager</strong></h3>
+				</a>
+				<p>Esta clase representa el gestor de notas de texto. Su constructor recibe la ruta al directorio en el que se guardarán los directorios de los usuarios con sus notas. Por defecto este valor es igual a <code>./Notes/</code>. Esta ruta se almacena en el atributo privado <code>dbPath</code>.</p>
+				<p>Define el método <code>normalizePath</code>, que se encarga de verificar si una <code>string</code> tiene una barra (<code>/</code>) en su última posición y añadirla en caso de que no la tenga ya. Esto es necesario para manejar las rutas de forma adecuada.</p>
+				<a href="#addnote" id="addnote" style="color: inherit; text-decoration: none;">
+					<h4><strong>addNote</strong></h4>
+				</a>
+				<p>Este método añade una nueva nota al directorio de un usuario. Para ello, recibe el nombre del usuario y un objeto <code>Note</code>,</p>
+				<ul>
+					<li><p>Primero verifica si existe el directorio principal (<code>dbPath</code>), y en caso de que no sea así, se crea con la api de Nose.js:</p>
+						<pre><code class="language-typescript"><span style="color: #24292E">    </span><span style="color: #6A737D">// Si no existe el directorio principal, se crea</span>
+<span style="color: #24292E">    </span><span style="color: #D73A49">if</span><span style="color: #24292E"> (</span><span style="color: #D73A49">!</span><span style="color: #24292E">fs.</span><span style="color: #6F42C1">existsSync</span><span style="color: #24292E">(</span><span style="color: #005CC5">this</span><span style="color: #24292E">.dbPath)) fs.</span><span style="color: #6F42C1">mkdirSync</span><span style="color: #24292E">(</span><span style="color: #005CC5">this</span><span style="color: #24292E">.dbPath);</span>
+</code></pre>
+					</li>
+					<li><p>Luego, verifica si exite el usuario especificado buscando un directorio dentro de  <code>dbPath</code> con dicho nombre, en caso de que no sea así, se crea.</p>
+					</li>
+					<li><p>Si ya existe una nota con el mismo nombre se lanza un error <code>InvalidNote</code></p>
+					</li>
+					<li><p>En otro caso, se añade la nota creando un fichero JSON que contiene la nota en dicho formato dentro del directorio del usuario :</p>
+						<pre><code class="language-typescript"><span style="color: #24292E">  </span><span style="color: #6A737D">// Se añade la nota</span>
+<span style="color: #24292E">  fs.</span><span style="color: #6F42C1">writeFileSync</span><span style="color: #24292E">(notePath, </span><span style="color: #005CC5">JSON</span><span style="color: #24292E">.</span><span style="color: #005CC5">stringify</span><span style="color: #24292E">(note, </span><span style="color: #005CC5">null</span><span style="color: #24292E">, </span><span style="color: #005CC5">1</span><span style="color: #24292E">));</span>
+</code></pre>
+					</li>
+				</ul>
+				<a href="#listnotes" id="listnotes" style="color: inherit; text-decoration: none;">
+					<h4><strong>listNotes</strong></h4>
+				</a>
+				<p>Lista los títulos de las notas de un usuario. </p>
+				<ul>
+					<li><p>Verifica que existe el usuario. En caso de que no sea así se lanza un error <code>InvalidUsername</code>.</p>
+					</li>
+					<li><p>Si existe el usuario, recupera los nombres de los ficheros dentro del directorio del usuario, elimina la extensión (.json), crea los objetos <code>Note</code> (con <code>searchNote</code>) e imprime el título coloreado:</p>
+						<pre><code class="language-typescript"><span style="color: #24292E">    </span><span style="color: #D73A49">return</span><span style="color: #24292E"> fs.</span><span style="color: #6F42C1">readdirSync</span><span style="color: #24292E">(userDir).</span><span style="color: #6F42C1">map</span><span style="color: #24292E">((</span><span style="color: #E36209">noteFile</span><span style="color: #24292E">) </span><span style="color: #D73A49">=&gt;</span><span style="color: #24292E"> noteFile.</span><span style="color: #6F42C1">substr</span><span style="color: #24292E">(</span><span style="color: #005CC5">0</span><span style="color: #24292E">, noteFile.</span><span style="color: #6F42C1">lastIndexOf</span><span style="color: #24292E">(</span><span style="color: #032F62">&#039;.&#039;</span><span style="color: #24292E">)))</span>
+<span style="color: #24292E">      .</span><span style="color: #6F42C1">map</span><span style="color: #24292E">((</span><span style="color: #E36209">noteTitle</span><span style="color: #24292E">) </span><span style="color: #D73A49">=&gt;</span><span style="color: #24292E"> </span><span style="color: #005CC5">this</span><span style="color: #24292E">.</span><span style="color: #6F42C1">searchNote</span><span style="color: #24292E">(username, noteTitle)?.</span><span style="color: #6F42C1">printTitle</span><span style="color: #24292E">());</span>
+</code></pre>
+					</li>
+				</ul>
+				<a href="#printnote" id="printnote" style="color: inherit; text-decoration: none;">
+					<h4><strong>printNote</strong></h4>
+				</a>
+				<p>Imprime una nota específica de un usuario.</p>
+				<ul>
+					<li>Verifica si existe el usuario, en caso de que no sea así lanza un error <code>InvalidUsername</code>.</li>
+					<li>Si existe el usuario entonces verifica que también existe la nota, en caso de que no sea así lanza un error <code>InvalidNote</code>.</li>
+					<li>Si existe el usuario y la nota entonces utiliza <code>searchNote</code> para crear el objeto <code>Note</code> correspondiente e imprimirlo mediante el método <code>print</code>:<pre><code class="language-typescript"><span style="color: #24292E">  </span><span style="color: #D73A49">return</span><span style="color: #24292E"> </span><span style="color: #005CC5">this</span><span style="color: #24292E">.</span><span style="color: #6F42C1">searchNote</span><span style="color: #24292E">(username, noteTitle)?.</span><span style="color: #6F42C1">print</span><span style="color: #24292E">() </span><span style="color: #D73A49">as</span><span style="color: #24292E"> </span><span style="color: #005CC5">string</span><span style="color: #24292E">;</span>
+</code></pre>
+					</li>
+				</ul>
+				<a href="#removenote" id="removenote" style="color: inherit; text-decoration: none;">
+					<h4><strong>removeNote</strong></h4>
+				</a>
+				<p>Elimina una nota de un usuario.</p>
+				<ul>
+					<li>Verifica si existe el usuario, en caso de que no sea así lanza un error <code>InvalidUsername</code>.</li>
+					<li>Si existe el usuario entonces verifica que también existe la nota, en caso de que no sea así lanza un error <code>InvalidNote</code>.</li>
+					<li>Si existe el usuario y la nota entonces la elimina mediante la api de Node.js: <pre><code class="language-typescript"><span style="color: #24292E">    </span><span style="color: #6A737D">// Elimina la nota</span>
+<span style="color: #24292E">  fs.</span><span style="color: #6F42C1">rmSync</span><span style="color: #24292E">(notePath);</span>
+</code></pre>
+					</li>
+				</ul>
+				<a href="#searchnote" id="searchnote" style="color: inherit; text-decoration: none;">
+					<h4><strong>searchNote</strong></h4>
+				</a>
+				<p>Se encarga de buscar una nota específica y devolver un objeto <code>Note</code> correspondiente.</p>
+				<ul>
+					<li><p>Si no existe la nota entonces devuelve <code>undefined</code></p>
+					</li>
+					<li><p>Si existe la nota, entonces parsea el contenido del fichero JSON y utiliza sus valores para crear un objeto <code>Note</code>.</p>
+						<pre><code class="language-typescript"><span style="color: #D73A49">const</span><span style="color: #24292E"> </span><span style="color: #005CC5">parsed</span><span style="color: #D73A49">:</span><span style="color: #24292E"> { </span><span style="color: #E36209">title</span><span style="color: #D73A49">:</span><span style="color: #24292E"> </span><span style="color: #005CC5">string</span><span style="color: #24292E">, </span><span style="color: #E36209">body</span><span style="color: #D73A49">:</span><span style="color: #24292E"> </span><span style="color: #005CC5">string</span><span style="color: #24292E">, </span><span style="color: #E36209">color</span><span style="color: #D73A49">:</span><span style="color: #24292E"> </span><span style="color: #6F42C1">KnownColors</span><span style="color: #24292E"> } </span><span style="color: #D73A49">=</span><span style="color: #24292E">  </span><span style="color: #6F42C1">JSONparse</span><span style="color: #24292E">(fs.</span><span style="color: #6F42C1">readFileSync</span><span style="color: #24292E">(notePath).</span><span style="color: #6F42C1">toString</span><span style="color: #24292E">());</span>
+
+<span style="color: #D73A49">return</span><span style="color: #24292E"> </span><span style="color: #D73A49">new</span><span style="color: #24292E"> </span><span style="color: #6F42C1">Note</span><span style="color: #24292E">(parsed.title, parsed.body, parsed.color);</span>
+</code></pre>
+					</li>
+				</ul>
+				<a href="#editnote" id="editnote" style="color: inherit; text-decoration: none;">
+					<h4><strong>editNote</strong></h4>
+				</a>
+				<p>Edita una nota ya existente. Para ello recibe el nombre del usuario, el título de la nota y un objeto de la forma <code>EditObj</code>.  </p>
+				<ul>
+					<li>Verifica si existe el usuario, en caso de que no sea así lanza un error <code>InvalidUsername</code>.</li>
+					<li>Si existe el usuario entonces verifica que también existe la nota, en caso de que no sea así lanza un error <code>InvalidNote</code>.</li>
+					<li>Verifica que el objeto <code>EditObj</code> define algún valor a ser editado, en caso de que no sea así lanza un error <code>NoEdition</code>.</li>
+					<li>En otro caso, se edita la nota con los valores del <code>EditObj</code>. Para esto, se obtiene el ojeto <code>Note</code> de la nota a editar, se edita con los setters y posteriormente se borra la nota original y se reemplaza con la nota editada. </li>
+				</ul>
+				<p>En el caso del color, se emplea el método estático <code>checkColor</code> de <code>Note</code> para verificar que la string que se pasa es un color soportado:</p>
+				<pre><code class="language-typescript"><span style="color: #24292E">    </span><span style="color: #D73A49">if</span><span style="color: #24292E"> (</span><span style="color: #D73A49">typeof</span><span style="color: #24292E"> newValues.newColor </span><span style="color: #D73A49">===</span><span style="color: #24292E"> </span><span style="color: #032F62">&#039;string&#039;</span><span style="color: #24292E">) {</span>
+<span style="color: #24292E">    </span><span style="color: #D73A49">if</span><span style="color: #24292E"> (</span><span style="color: #D73A49">!</span><span style="color: #24292E">Note.</span><span style="color: #6F42C1">checkColor</span><span style="color: #24292E">(newValues.newColor)) </span><span style="color: #D73A49">throw</span><span style="color: #24292E"> </span><span style="color: #D73A49">new</span><span style="color: #24292E"> </span><span style="color: #6F42C1">InvalidColor</span><span style="color: #24292E">(newValues.newColor);</span>
+<span style="color: #24292E">    newNote.</span><span style="color: #6F42C1">setColor</span><span style="color: #24292E">(newValues.newColor </span><span style="color: #D73A49">as</span><span style="color: #24292E"> </span><span style="color: #6F42C1">KnownColors</span><span style="color: #24292E">);     </span>
+<span style="color: #24292E">  }</span>
+</code></pre>
+				<a href="#aplicación-principal" id="aplicación-principal" style="color: inherit; text-decoration: none;">
+					<h2><strong>Aplicación principal</strong></h2>
+				</a>
+				<p>La aplicación principal define los comandos que se podrán recibir mediante el uso de <code>yargs</code>. Los comandos soportados son: <code>add</code>, <code>remove</code>, <code>list</code>, <code>read</code>, y <code>edit</code>.</p>
+				<p>Una vez definidos los comandos y sus parámetros, utilizamos un bloque try catch para invocar al método <code>parse</code> de <code>yargs</code>, y manejamos un posible error imprimiéndolo por la consola haciendo uso de su método <code>toString</code>:</p>
+				<pre><code class="language-typescript"><span style="color: #24292E">. . . </span>
+<span style="color: #D73A49">try</span><span style="color: #24292E"> {</span>
+<span style="color: #24292E">  yargs.</span><span style="color: #6F42C1">parse</span><span style="color: #24292E">();</span>
+<span style="color: #24292E">} </span><span style="color: #D73A49">catch</span><span style="color: #24292E"> (error) {</span>
+<span style="color: #24292E">  console.</span><span style="color: #6F42C1">log</span><span style="color: #24292E">(error.</span><span style="color: #6F42C1">toString</span><span style="color: #24292E">());</span>
+<span style="color: #24292E">}</span>
+</code></pre>
+				<p>Además, queremos imprimir los mensajes informativos con un color específico: verde. Para esto definiremos una función <code>success</code> a la que asignaremos la función específica de <code>chalk</code> con la que queremos colorear nuestros mensajes informativos, en este caso será <code>chalk.green</code>:</p>
+				<pre><code class="language-typescript"><span style="color: #D73A49">const</span><span style="color: #24292E"> </span><span style="color: #005CC5">success</span><span style="color: #24292E"> </span><span style="color: #D73A49">=</span><span style="color: #24292E"> chalk.green;</span>
+</code></pre>
+				<p>E invocaremos dicha función al final de cada uno de los manejadores de los comandos.</p>
+				<p>Ejemplo, handler del comando <code>add</code>:</p>
+				<pre><code class="language-typescript"><span style="color: #24292E">  </span><span style="color: #6F42C1">handler</span><span style="color: #24292E">(argv) {</span>
+<span style="color: #24292E">    </span><span style="color: #D73A49">if</span><span style="color: #24292E"> (</span><span style="color: #D73A49">typeof</span><span style="color: #24292E"> argv.username </span><span style="color: #D73A49">===</span><span style="color: #24292E"> </span><span style="color: #032F62">&#039;string&#039;</span><span style="color: #24292E"> </span><span style="color: #D73A49">&amp;&amp;</span><span style="color: #24292E"> </span><span style="color: #D73A49">typeof</span><span style="color: #24292E"> argv.title </span><span style="color: #D73A49">===</span><span style="color: #24292E"> </span><span style="color: #032F62">&#039;string&#039;</span><span style="color: #24292E"> </span><span style="color: #D73A49">&amp;&amp;</span>
+<span style="color: #24292E">      </span><span style="color: #D73A49">typeof</span><span style="color: #24292E"> argv.color </span><span style="color: #D73A49">===</span><span style="color: #24292E"> </span><span style="color: #032F62">&#039;string&#039;</span><span style="color: #24292E"> </span><span style="color: #D73A49">&amp;&amp;</span><span style="color: #24292E"> </span><span style="color: #D73A49">typeof</span><span style="color: #24292E"> argv.body </span><span style="color: #D73A49">===</span><span style="color: #24292E"> </span><span style="color: #032F62">&#039;string&#039;</span><span style="color: #24292E">) {</span>
+<span style="color: #24292E">      </span>
+<span style="color: #24292E">      </span><span style="color: #D73A49">if</span><span style="color: #24292E"> (</span><span style="color: #D73A49">!</span><span style="color: #24292E">Note.</span><span style="color: #6F42C1">checkColor</span><span style="color: #24292E">(argv.color)) </span><span style="color: #D73A49">throw</span><span style="color: #24292E"> </span><span style="color: #D73A49">new</span><span style="color: #24292E"> </span><span style="color: #6F42C1">InvalidColor</span><span style="color: #24292E">(argv.color);</span>
+<span style="color: #24292E">      manager.</span><span style="color: #6F42C1">addNote</span><span style="color: #24292E">(argv.username, </span><span style="color: #D73A49">new</span><span style="color: #24292E"> </span><span style="color: #6F42C1">Note</span><span style="color: #24292E">(argv.title, argv.body, argv.color </span><span style="color: #D73A49">as</span><span style="color: #24292E"> </span><span style="color: #6F42C1">KnownColors</span><span style="color: #24292E">));</span>
+<span style="color: #24292E">      console.</span><span style="color: #6F42C1">log</span><span style="color: #24292E">(</span><span style="color: #6F42C1">success</span><span style="color: #24292E">(</span><span style="color: #032F62">`Nota ${</span><span style="color: #24292E">argv</span><span style="color: #032F62">.</span><span style="color: #24292E">username</span><span style="color: #032F62">}/${</span><span style="color: #24292E">argv</span><span style="color: #032F62">.</span><span style="color: #24292E">title</span><span style="color: #032F62">} añadida correctamente!`</span><span style="color: #24292E">));</span>
+<span style="color: #24292E">    }</span>
+<span style="color: #24292E">  },</span>
+</code></pre>
+				<p>Como podemos observar en este ejemplo, verificamos que los argumentos recibidos son de tipo <code>string</code>, y posteriormente comprobamos también que el color está soportado mediante el método estático <code>Note.checkColor</code>.</p>
+				<p>Una vez finalizadas las comprobaciones, añadimos la nota e imprimimos por consola un mensaje informativo utilizando nuestra función <code>success</code>.</p>
+				<a href="#ejemplo-de-uso" id="ejemplo-de-uso" style="color: inherit; text-decoration: none;">
+					<h2><strong>Ejemplo de uso</strong></h2>
+				</a>
+				<a href="#workflows" id="workflows" style="color: inherit; text-decoration: none;">
+					<h2><strong>Workflows</strong></h2>
+				</a>
+				<p>En esta práctica se ha empleado la integración continua de Github, en concreto hemos definido tres flujos de trabajo: uno para el cubrimiento con Coveralls, uno para los tests con Node.js y otro para evaluar la calidad del código con SonarCloud.</p>
+				<p>En el caso del flujo de trabajo de testing, se emplean solo las versiones 14.x y 15x de Node.js debido a que, al parecer, la api síncrona de Node.js no funciona correctamente con versiones anteriores de Node.</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/errors.html">Errors</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/errors_basic_error.html">Errors/basic_<wbr>error</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/errors_invalid_color.html">Errors/invalid_<wbr>color</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/errors_invalid_note.html">Errors/invalid_<wbr>note</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/errors_invalid_username.html">Errors/invalid_<wbr>username</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/errors_no_edition.html">Errors/no_<wbr>edition</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/errors_repeated_note.html">Errors/repeated_<wbr>note</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/interfaces_colored.html">Interfaces/colored</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/interfaces_edit_obj.html">Interfaces/edit-<wbr>obj</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/note.html">note</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/notes_app.html">notes-<wbr>app</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/notes_manager.html">notes_<wbr>manager</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
