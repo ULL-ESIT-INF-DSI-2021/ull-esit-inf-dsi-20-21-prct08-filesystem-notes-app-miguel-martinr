@@ -14,7 +14,7 @@ export class Note implements Colored {
   private color: KnownColors;
   constructor(private title: string, private body: string, color: KnownColors) {
 
-    this.color = color as KnownColors;
+    this.color = color;
   }
 
   /**
