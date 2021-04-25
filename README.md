@@ -136,9 +136,9 @@ En el caso del color, se emplea el método estático `checkColor` de `Note` para
     }
   ```
 
-## **Aplicación principal**
+## **Aplicación**
 
-La aplicación principal define los comandos que se podrán recibir mediante el uso de `yargs`. Los comandos soportados son: `add`, `remove`, `list`, `read`, y `edit`.
+El programa principal (se invoca de la forma `dist/notes-app.js`) define los comandos que se podrán recibir mediante el uso de `yargs`. Los comandos soportados son: `add`, `remove`, `list`, `read`, y `edit`.
 
 Una vez definidos los comandos y sus parámetros, utilizamos un bloque try catch para invocar al método `parse` de `yargs`, y manejamos un posible error imprimiéndolo por la consola haciendo uso de su método `toString`:
 
