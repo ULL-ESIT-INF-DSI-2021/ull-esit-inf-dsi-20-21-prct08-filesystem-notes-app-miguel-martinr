@@ -8,7 +8,7 @@ import { NotesManager } from './notes_manager';
 const success = chalk.green;
 const manager = new NotesManager();
 yargs
-    .scriptName('notes-processor')
+    .scriptName('notes-app')
     .usage('$0 <cmd> [args]');
 
 
