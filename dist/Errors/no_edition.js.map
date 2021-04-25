@@ -1,0 +1,1 @@
+{"version":3,"file":"no_edition.js","sourceRoot":"","sources":["../../src/Errors/no_edition.ts"],"names":[],"mappings":";;;AAAA,+CAA2C;AAG3C,MAAa,SAAU,SAAQ,wBAAU;IACvC,YAAoB,QAAgB;QAClC,KAAK,CAAC,yCAAyC,QAAQ,IAAI,CAAC,CAAC;QAD3C,aAAQ,GAAR,QAAQ,CAAQ;IAEpC,CAAC;IAED,QAAQ;QACN,OAAO,KAAK,CAAC,KAAK,CAAC,KAAK,CAAC,QAAQ,EAAE,CAAC,CAAC;IACvC,CAAC;CACF;AARD,8BAQC"}

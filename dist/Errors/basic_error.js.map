@@ -1,0 +1,1 @@
+{"version":3,"file":"basic_error.js","sourceRoot":"","sources":["../../src/Errors/basic_error.ts"],"names":[],"mappings":";;;AACA,+BAA+B;AAE/B,MAAsB,UAAW,SAAQ,KAAK;IAC5C,YAAY,GAAa;QACvB,KAAK,CAAC,GAAG,CAAC,CAAC;IACb,CAAC;IAED,KAAK,CAAC,OAAe;QACnB,OAAO,KAAK,CAAC,GAAG,CAAC,OAAO,CAAC,CAAC;IAC5B,CAAC;CACF;AARD,gCAQC"}

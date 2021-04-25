@@ -1,0 +1,1 @@
+{"version":3,"file":"invalid_color.js","sourceRoot":"","sources":["../../src/Errors/invalid_color.ts"],"names":[],"mappings":";;;AAAA,+CAA2C;AAG3C,MAAa,YAAa,SAAQ,wBAAU;IAC1C,YAAoB,YAAoB;QACtC,KAAK,CAAC,0BAA0B,YAAY,IAAI,CAAC,CAAC;QADhC,iBAAY,GAAZ,YAAY,CAAQ;IAExC,CAAC;IAED,QAAQ;QACN,OAAO,KAAK,CAAC,KAAK,CAAC,KAAK,CAAC,QAAQ,EAAE,CAAC,CAAC;IACvC,CAAC;CACF;AARD,oCAQC"}
