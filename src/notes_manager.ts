@@ -144,7 +144,7 @@ export class NotesManager {
     }
 
     if (typeof newValues.newColor === 'string') {
-      if (!Note.checkColor(newValues.newColor)) throw new InvalidColor(newValues.newColor as string);
+      if (!Note.checkColor(newValues.newColor)) throw new InvalidColor(newValues.newColor);
       newNote.setColor(newValues.newColor as KnownColors);     
     }
    
