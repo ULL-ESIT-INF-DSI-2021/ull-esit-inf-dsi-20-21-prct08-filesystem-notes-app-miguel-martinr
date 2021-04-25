@@ -1,1 +1,0 @@
-{"version":3,"file":"invalid_username.js","sourceRoot":"","sources":["../../src/Errors/invalid_username.ts"],"names":[],"mappings":";;;AAAA,+CAA2C;AAG3C,MAAa,oBAAqB,SAAQ,wBAAU;IAClD,YAAoB,QAAgB;QAClC,KAAK,CAAC,6BAA6B,QAAQ,IAAI,CAAC,CAAC;QAD/B,aAAQ,GAAR,QAAQ,CAAQ;IAEpC,CAAC;IAED,QAAQ;QACN,OAAO,KAAK,CAAC,KAAK,CAAC,KAAK,CAAC,QAAQ,EAAE,CAAC,CAAC;IACvC,CAAC;CACF;AARD,oDAQC"}

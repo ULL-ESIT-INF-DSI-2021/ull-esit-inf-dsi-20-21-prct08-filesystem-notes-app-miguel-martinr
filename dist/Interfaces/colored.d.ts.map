@@ -1,1 +1,0 @@
-{"version":3,"file":"colored.d.ts","sourceRoot":"","sources":["../../src/Interfaces/colored.ts"],"names":[],"mappings":"AAAA;;GAEG;AAEH,oBAAY,WAAW;IACrB,GAAG,QAAQ;IACX,KAAK,UAAU;IACf,IAAI,SAAS;IACb,MAAM,WAAW;CAClB;AAED;;GAEG;AACH,MAAM,WAAW,OAAO;IACtB,QAAQ,IAAI,WAAW,CAAC;IACxB,QAAQ,CAAC,QAAQ,EAAE,WAAW,GAAG,OAAO,CAAA;CACzC"}

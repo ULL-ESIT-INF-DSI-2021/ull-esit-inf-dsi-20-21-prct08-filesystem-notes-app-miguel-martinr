@@ -1,1 +1,0 @@
-{"version":3,"file":"invalid_username.d.ts","sourceRoot":"","sources":["../../src/Errors/invalid_username.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAE,MAAM,eAAe,CAAC;AAG3C,qBAAa,oBAAqB,SAAQ,UAAU;IACtC,OAAO,CAAC,QAAQ;gBAAR,QAAQ,EAAE,MAAM;IAIpC,QAAQ;CAGT"}
