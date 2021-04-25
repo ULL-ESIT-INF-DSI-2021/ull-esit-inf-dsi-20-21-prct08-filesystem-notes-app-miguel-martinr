@@ -7,4 +7,6 @@ describe('Note tests', () => {
   it('It can be instanciated', () => {
     expect(new Note('', '', KnownColors.green) instanceof Note).to.be.true;
   });
+
+
 });
